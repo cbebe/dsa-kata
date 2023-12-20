@@ -14,6 +14,7 @@ class Queue(FQueue[T]):
     def __init__(self) -> None:
         self.head = None
         self.tail = None
+        self._len = 0
 
     def enqueue(self, item: T):
         n = Node(item)
@@ -23,6 +24,7 @@ class Queue(FQueue[T]):
         else:
             self.tail.next = n
             self.tail = n
+        self._len += 1
 
     def dequeue(self) -> T | None:
         if not self.head:
@@ -33,6 +35,7 @@ class Queue(FQueue[T]):
             self.tail = None
         self.head = self.head.next
         n.next = None
+        self._len -= 1
         return n.val
 
     def peek(self) -> T | None:
@@ -40,12 +43,7 @@ class Queue(FQueue[T]):
 
     @property
     def length(self) -> int:
-        i = 0
-        node = self.head
-        while node:
-            i += 1
-            node = node.next
-        return i
+        return self._len
 
 
 if __name__ == "__main__":
