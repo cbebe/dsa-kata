@@ -5,7 +5,7 @@ T = TypeVar('T')
 
 
 class Node(Generic[T]):
-    def __init__(self, val):
+    def __init__(self, val: T):
         self.val = val
         self.next: Node[T] | None = None
 
@@ -14,7 +14,7 @@ class LinkedList(fem_list.List[T]):
     def __init__(self):
         self.head: Node[T] | None = None
 
-    def prepend(self, item):
+    def prepend(self, item: T):
         node = Node(item)
         if self.head is None:
             self.head = node
@@ -22,22 +22,23 @@ class LinkedList(fem_list.List[T]):
             node.next = self.head
             self.head = node
 
-    def insert_at(self, item, idx):
+    def insert_at(self, item: T, idx: int):
         if idx == 0:
             self.prepend(item)
             return
         node = self.head
-        total = 0
-        while node and total + 1 != idx:
-            total += 1
+        for _ in range(idx - 1):
+            # We went out of bounds
+            if not node:
+                return
             node = node.next
-        if not node:
-            return None
-        i = Node(item)
+        if not node or not node.next:
+            return
+        i = Node[T](item)
         i.next = node.next
         node.next = i
 
-    def append(self, item):
+    def append(self, item: T):
         i = Node(item)
         node = self.head
         if node is None:
@@ -47,7 +48,7 @@ class LinkedList(fem_list.List[T]):
                 node = node.next
             node.next = i
 
-    def remove(self, item):
+    def remove(self, item: T) -> T | None:
         node = self.head
         # This is the only element
         if node and node.val == item:
@@ -64,37 +65,33 @@ class LinkedList(fem_list.List[T]):
         node.next = ret.next
         return ret.val
 
-    def get(self, idx):
+    def get(self, idx: int) -> T | None:
         node = self.head
-        total = 0
-        while node and total != idx:
-            total += 1
+        for _ in range(idx):
+            if not node:
+                break
             node = node.next
-        if node:
-            return node.val
-        else:
-            return None
+        return node and node.val
 
-    def remove_at(self, idx):
+    def remove_at(self, idx: int) -> T | None:
         node = self.head
         if node is None:
             return None
         if idx == 0:
             self.head = node.next
             return node.val
-        total = 0
-        while node and total + 1 != idx:
-            total += 1
+        for _ in range(idx - 1):
+            if not node:
+                return
             node = node.next
-        # Out of bounds or not found
         if not node or not node.next:
-            return None
+            return
         ret = node.next
         node.next = ret.next
         return ret.val
 
     @property
-    def length(self):
+    def length(self) -> int:
         node = self.head
         total = 0
         while node:
