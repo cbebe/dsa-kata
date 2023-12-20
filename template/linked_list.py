@@ -1,10 +1,10 @@
-import fem_list
+from fem.list import List, test_list
 from typing import TypeVar, Generic
 
 T = TypeVar('T')
 
 
-class LinkedList(Generic[T], fem_list.List[T]):
+class LinkedList(Generic[T], List[T]):
     def prepend(self, item: T):
         pass
 
@@ -30,5 +30,5 @@ class LinkedList(Generic[T], fem_list.List[T]):
 
 if __name__ == "__main__":
     ll = LinkedList[int]()
-    fem_list.test_list(ll)
+    test_list(ll)
     print("OK")

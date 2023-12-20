@@ -1,4 +1,4 @@
-import search_test
+from fem.search import test_search
 
 
 def binary_fn(haystack: list[int], needle: int):
@@ -6,4 +6,4 @@ def binary_fn(haystack: list[int], needle: int):
 
 
 if __name__ == "__main__":
-    search_test.search_test(binary_fn)
+    test_search(binary_fn)

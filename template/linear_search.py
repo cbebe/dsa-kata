@@ -1,4 +1,4 @@
-import search_test
+from fem.search import test_search
 
 
 def linear_fn(haystack: list[int], needle: int):
@@ -6,4 +6,4 @@ def linear_fn(haystack: list[int], needle: int):
 
 
 if __name__ == "__main__":
-    search_test.search_test(linear_fn)
+    test_search(linear_fn)
