@@ -11,9 +11,11 @@ class Node(Generic[T]):
         self.next: Node[T] | None = None
 
 
+# TODO: Add a reference to tail for constant time append
 class LinkedList(List[T]):
     def __init__(self):
         self.head: Node[T] | None = None
+        self._len = 0
 
     def prepend(self, item: T):
         node = Node(item)
@@ -22,6 +24,7 @@ class LinkedList(List[T]):
         else:
             node.next = self.head
             self.head = node
+        self._len += 1
 
     def insert_at(self, item: T, idx: int):
         if idx == 0:
@@ -38,6 +41,7 @@ class LinkedList(List[T]):
         i = Node[T](item)
         i.next = node.next
         node.next = i
+        self._len += 1
 
     def append(self, item: T):
         i = Node(item)
@@ -48,12 +52,14 @@ class LinkedList(List[T]):
             while node.next:
                 node = node.next
             node.next = i
+        self._len += 1
 
     def remove(self, item: T) -> T | None:
         node = self.head
         # This is the only element
         if node and node.val == item:
             self.head = node.next
+            self._len -= 1
             return node.val
         while node and node.next and node.next.val != item:
             node = node.next
@@ -64,6 +70,7 @@ class LinkedList(List[T]):
             return None
         ret = node.next
         node.next = ret.next
+        self._len -= 1
         return ret.val
 
     def get(self, idx: int) -> T | None:
@@ -80,6 +87,7 @@ class LinkedList(List[T]):
             return None
         if idx == 0:
             self.head = node.next
+            self._len -= 1
             return node.val
         for _ in range(idx - 1):
             if not node:
@@ -89,16 +97,12 @@ class LinkedList(List[T]):
             return
         ret = node.next
         node.next = ret.next
+        self._len -= 1
         return ret.val
 
     @property
     def length(self) -> int:
-        node = self.head
-        total = 0
-        while node:
-            total += 1
-            node = node.next
-        return total
+        return self._len
 
     def __str__(self):
         s = "["
