@@ -1,1 +1,6 @@
 __pycache__
+/*
+!/.gitignore
+!/template
+!/first
+!/generate.py
