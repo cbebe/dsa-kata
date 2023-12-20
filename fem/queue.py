@@ -41,4 +41,9 @@ def test_queue(q: Queue[int]):
     q.enqueue(69)
     assert q.peek() == 69
     assert q.length == 1
+    q.dequeue()
+
+    q.enqueue(1)
+    q.enqueue(2)
+    assert q.peek() == 1
     print("OK")

@@ -39,7 +39,7 @@ class Queue(FQueue[T]):
         return n.val
 
     def peek(self) -> T | None:
-        return self.tail.val if self.tail else None
+        return self.head.val if self.head else None
 
     @property
     def length(self) -> int:
