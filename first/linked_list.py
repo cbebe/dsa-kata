@@ -11,16 +11,17 @@ class Node(Generic[T]):
         self.next: Node[T] | None = None
 
 
-# TODO: Add a reference to tail for constant time append
 class LinkedList(List[T]):
     def __init__(self):
         self.head: Node[T] | None = None
+        self.tail: Node[T] | None = None
         self._len = 0
 
     def prepend(self, item: T):
         node = Node(item)
         if self.head is None:
             self.head = node
+            self.tail = node
         else:
             node.next = self.head
             self.head = node
@@ -28,8 +29,10 @@ class LinkedList(List[T]):
 
     def insert_at(self, item: T, idx: int):
         if idx == 0:
-            self.prepend(item)
-            return
+            return self.prepend(item)
+        if idx == self._len:
+            return self.append(item)
+
         node = self.head
         for _ in range(idx - 1):
             # We went out of bounds
@@ -44,21 +47,21 @@ class LinkedList(List[T]):
         self._len += 1
 
     def append(self, item: T):
+        # First item
+        if self.tail is None:
+            return self.prepend(item)
         i = Node(item)
-        node = self.head
-        if node is None:
-            self.head = i
-        else:
-            while node.next:
-                node = node.next
-            node.next = i
+        self.tail.next = i
+        self.tail = i
         self._len += 1
 
     def remove(self, item: T) -> T | None:
         node = self.head
-        # This is the only element
+        # It's in the first element
         if node and node.val == item:
             self.head = node.next
+            if node == self.tail:
+                self.tail = None
             self._len -= 1
             return node.val
         while node and node.next and node.next.val != item:
@@ -71,9 +74,18 @@ class LinkedList(List[T]):
         ret = node.next
         node.next = ret.next
         self._len -= 1
+        if ret == self.tail:
+            self.tail = node
+        if ret == self.head:
+            self.head = ret.next
+        ret.next = None
         return ret.val
 
     def get(self, idx: int) -> T | None:
+        if idx == 0:
+            return self.head and self.head.val
+        if idx == self._len - 1:
+            return self.tail and self.tail.val
         node = self.head
         for _ in range(idx):
             if not node:
@@ -88,6 +100,9 @@ class LinkedList(List[T]):
         if idx == 0:
             self.head = node.next
             self._len -= 1
+            node.next = None
+            if node == self.tail:
+                self.tail = None
             return node.val
         for _ in range(idx - 1):
             if not node:
@@ -97,6 +112,9 @@ class LinkedList(List[T]):
             return
         ret = node.next
         node.next = ret.next
+        if ret == self.tail:
+            self.tail = node
+        ret.next = None
         self._len -= 1
         return ret.val
 
