@@ -1,15 +1,18 @@
 import fem_list
+from typing import TypeVar, Generic
+
+T = TypeVar('T')
 
 
-class Node():
+class Node(Generic[T]):
     def __init__(self, val):
         self.val = val
-        self.next = None
+        self.next: Node[T] | None = None
 
 
-class LinkedList(fem_list.List):
+class LinkedList(fem_list.List[T]):
     def __init__(self):
-        self.head = None
+        self.head: Node[T] | None = None
 
     def prepend(self, item):
         node = Node(item)
@@ -67,10 +70,15 @@ class LinkedList(fem_list.List):
         while node and total != idx:
             total += 1
             node = node.next
-        return node.val
+        if node:
+            return node.val
+        else:
+            return None
 
     def remove_at(self, idx):
         node = self.head
+        if node is None:
+            return None
         if idx == 0:
             self.head = node.next
             return node.val
@@ -79,7 +87,7 @@ class LinkedList(fem_list.List):
             total += 1
             node = node.next
         # Out of bounds or not found
-        if not node:
+        if not node or not node.next:
             return None
         ret = node.next
         node.next = ret.next
@@ -107,6 +115,6 @@ class LinkedList(fem_list.List):
 
 
 if __name__ == "__main__":
-    ll = LinkedList()
+    ll = LinkedList[int]()
     fem_list.test_list(ll)
     print("OK")

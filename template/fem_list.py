@@ -1,37 +1,40 @@
 from abc import ABC, abstractmethod, abstractproperty
+from typing import TypeVar, Generic
+
+T = TypeVar('T')
 
 
-class List(ABC):
+class List(Generic[T], ABC):
     @abstractmethod
-    def prepend(self, item):
+    def prepend(self, item: T):
         pass
 
     @abstractmethod
-    def insert_at(self, item, idx):
+    def insert_at(self, item: T, idx: int):
         pass
 
     @abstractmethod
-    def append(self, item):
+    def append(self, item: T):
         pass
 
     @abstractmethod
-    def remove(self, item):
+    def remove(self, item: T) -> T | None:
         pass
 
     @abstractmethod
-    def get(self, idx):
+    def get(self, idx: int) -> T | None:
         pass
 
     @abstractmethod
-    def remove_at(self, idx):
+    def remove_at(self, idx: int) -> T | None:
         pass
 
     @abstractproperty
-    def length(self):
-        pass
+    def length(self) -> int:
+        return -1
 
 
-def test_list(list: List):
+def test_list(list: List[int]):
     list.append(5)
     list.append(7)
     list.append(9)
