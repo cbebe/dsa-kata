@@ -1,5 +1,6 @@
 from typing import Callable
 from random import randint
+from fem import expect
 
 
 def test_two_crystal_balls(tcb: Callable[[list[bool]], int | None]):
@@ -8,12 +9,12 @@ def test_two_crystal_balls(tcb: Callable[[list[bool]], int | None]):
     idx = randint(0, size - 1)
     for i in range(idx, size):
         data[i] = True
-    assert idx == tcb(data)
+    expect(tcb(data)).toEqual(idx)
 
     empty = [False] * 821
-    assert tcb(empty) is None
+    expect(tcb(empty)).toEqual(None)
 
     last = [False] * size
     last[size - 1] = True
-    assert size - 1 == tcb(last)
+    expect(tcb(last)).toEqual(size - 1)
     print("OK")

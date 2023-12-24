@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod, abstractproperty
 from typing import TypeVar, Generic
+from fem import expect
 
 T = TypeVar('T')
 
@@ -27,23 +28,23 @@ def test_stack(s: Stack[int]):
     s.push(7)
     s.push(9)
 
-    assert s.pop() == 9
-    assert s.length == 2
+    expect(s.pop()).toEqual(9)
+    expect(s.length).toEqual(2)
 
     s.push(11)
-    assert s.pop() == 11
-    assert s.pop() == 7
-    assert s.peek() == 5
-    assert s.pop() == 5
-    assert s.pop() is None
-    assert s.length == 0
+    expect(s.pop()).toEqual(11)
+    expect(s.pop()).toEqual(7)
+    expect(s.peek()).toEqual(5)
+    expect(s.pop()).toEqual(5)
+    expect(s.pop()).toEqual(None)
+    expect(s.length).toEqual(0)
 
     s.push(69)
-    assert s.peek() == 69
-    assert s.length == 1
+    expect(s.peek()).toEqual(69)
+    expect(s.length).toEqual(1)
     s.pop()
 
     s.push(1)
     s.push(2)
-    assert s.peek() == 2
+    expect(s.peek()).toEqual(2)
     print("OK")
