@@ -4,7 +4,19 @@ from typing import TypeVar, Generic
 T = TypeVar('T')
 
 
-class LinkedList(Generic[T], List[T]):
+class Node(Generic[T]):
+    def __init__(self, item: T):
+        self.val = item
+        self.prev: Node[T] | None = None
+        self.next: Node[T] | None = None
+
+
+class DoublyLinkedList(Generic[T], List[T]):
+    def __init__(self):
+        self.head: Node[T] | None = None
+        self.tail: Node[T] | None = None
+        self.len = 0
+
     def prepend(self, item: T):
         pass
 
@@ -25,21 +37,10 @@ class LinkedList(Generic[T], List[T]):
 
     @property
     def length(self) -> int:
-        return -1
-
-    def __str__(self):
-        s = "["
-        node = self.head
-        while node:
-            s += str(node.val)
-            node = node.next
-            if node:
-                s += ", "
-
-        return s + "]"
+        return self.len
 
 
 if __name__ == "__main__":
-    ll = LinkedList[int]()
+    ll = DoublyLinkedList[int]()
     test_list(ll)
     print("OK")
