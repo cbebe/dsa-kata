@@ -41,8 +41,39 @@ class DoublyLinkedList(Generic[T], List[T]):
     def length(self) -> int:
         return self.len
 
+    def reverse(self):
+        pass
+
+    def __str__(self):
+        s = "["
+        node = self.head
+        while node:
+            s += str(node.val)
+            node = node.next
+            if node:
+                s += ", "
+
+        return s + "]"
+
+
+def test_reverse():
+    a = DoublyLinkedList[int]()
+    for i in range(5):
+        a.append(i)
+    b = DoublyLinkedList[int]()
+    for i in range(5):
+        b.prepend(i)
+    print(a)
+    a.reverse()
+    print(a)
+    for i in range(5):
+        x = b.get(i)
+        y = a.get(i)
+        assert x == y, f"wrong item at index {i}, want: {x}, got: {y}"
+
 
 if __name__ == "__main__":
+    test_reverse()
     ll = DoublyLinkedList[int]()
     test_list(ll)
     print("OK")

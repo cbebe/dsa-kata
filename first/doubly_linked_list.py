@@ -12,9 +12,6 @@ class Node(Generic[T]):
         self.prev: Node[T] | None = None
         self.next: Node[T] | None = None
 
-    def __str__(self):
-        return f"({self.val})"
-
 
 class DoublyLinkedList(Generic[T], List[T]):
     def __init__(self):
@@ -109,8 +106,48 @@ class DoublyLinkedList(Generic[T], List[T]):
         curr.next = curr.prev = None
         return curr.val
 
+    def reverse(self):
+        oh = self.head
+        ot = self.tail
+        curr = self.head
+        while curr:
+            t = curr.prev
+            curr.prev = curr.next
+            curr.next = t
+            curr = curr.prev
+        self.head = ot
+        self.tail = oh
+
+    def __str__(self):
+        s = "["
+        node = self.head
+        while node:
+            s += str(node.val)
+            node = node.next
+            if node:
+                s += ", "
+
+        return s + "]"
+
+
+def test_reverse():
+    a = DoublyLinkedList[int]()
+    for i in range(5):
+        a.append(i)
+    b = DoublyLinkedList[int]()
+    for i in range(5):
+        b.prepend(i)
+    print(a)
+    a.reverse()
+    print(a)
+    for i in range(5):
+        x = b.get(i)
+        y = a.get(i)
+        assert x == y, f"wrong item at index {i}, want: {x}, got: {y}"
+
 
 if __name__ == "__main__":
+    test_reverse()
     ll = DoublyLinkedList[int]()
     test_list(ll)
     print("OK")
