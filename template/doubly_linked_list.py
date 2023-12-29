@@ -5,6 +5,8 @@ T = TypeVar('T')
 
 
 class Node(Generic[T]):
+    __slots__ = ('val', 'prev', 'next')
+
     def __init__(self, item: T):
         self.val = item
         self.prev: Node[T] | None = None
