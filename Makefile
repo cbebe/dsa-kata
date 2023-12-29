@@ -5,4 +5,7 @@ help:
 	python generate.py $@
 	nvim $@/*
 
-.PHONY: help
+clean:
+	git clean -Xdf
+
+.PHONY: help clean
