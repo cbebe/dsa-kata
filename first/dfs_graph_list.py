@@ -7,18 +7,17 @@ def dfs(g: AdjList, start: int, val: int) -> list[int] | None:
 
     def walk(i: int):
         if seen[i]:
-            return
-        if i == val:
-            paths.append(i)
-            return True
+            return False
         seen[i] = True
+        paths.append(i)
+        if i == val:
+            return True
         for n, _ in g[i]:
             if walk(n):
-                paths.append(i)
                 return True
+        paths.pop()
         return False
     if walk(start):
-        paths.reverse()
         return paths
     else:
         return None
