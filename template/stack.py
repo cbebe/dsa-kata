@@ -1,12 +1,12 @@
 from typing import TypeVar
 
-from fem.stack import Stack as FEMStack
+from fem.stack import Stack as IStack
 from fem.stack import test_stack
 
 T = TypeVar('T')
 
 
-class Stack(FEMStack[T]):
+class Stack(IStack[T]):
     def push(self, item: T):
         pass
 

@@ -1,6 +1,6 @@
 from typing import Generic, TypeVar
 
-from fem.stack import Stack as FEMStack
+from fem.stack import Stack as IStack
 from fem.stack import test_stack
 
 T = TypeVar('T')
@@ -12,7 +12,7 @@ class Node(Generic[T]):
         self.prev: Node[T] | None = None
 
 
-class Stack(FEMStack[T]):
+class Stack(IStack[T]):
     def __init__(self):
         self.head: Node[T] | None = None
         self._len = 0
