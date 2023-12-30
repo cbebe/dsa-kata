@@ -1,6 +1,6 @@
-from typing import TypeVar, Generic
-from fem.list import List, test_list
+from typing import Generic, TypeVar
 
+from fem.list import List, test_list
 
 T = TypeVar('T')
 

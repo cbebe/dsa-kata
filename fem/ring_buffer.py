@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod, abstractproperty
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
+
 from . import expect, undefined
 
 T = TypeVar('T')

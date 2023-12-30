@@ -1,5 +1,7 @@
-from fem.queue import Queue as FQueue, test_queue
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
+
+from fem.queue import Queue as FQueue
+from fem.queue import test_queue
 
 T = TypeVar('T')
 

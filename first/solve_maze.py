@@ -1,4 +1,4 @@
-from fem.maze_solver import test_maze, Point, Path
+from fem.maze_solver import Path, Point, test_maze
 
 
 def solve_maze(maze: list[str], wall: str, start: Point, end: Point) -> Path:

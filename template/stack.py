@@ -1,5 +1,7 @@
-from fem.stack import Stack as FEMStack, test_stack
 from typing import TypeVar
+
+from fem.stack import Stack as FEMStack
+from fem.stack import test_stack
 
 T = TypeVar('T')
 

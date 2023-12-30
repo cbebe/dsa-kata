@@ -1,5 +1,7 @@
-from fem.ring_buffer import RingBuffer as FEMRingBuffer, test_ring_buffer
-from typing import TypeVar, Generic
+from typing import Generic, TypeVar
+
+from fem.ring_buffer import RingBuffer as FEMRingBuffer
+from fem.ring_buffer import test_ring_buffer
 
 T = TypeVar('T')
 
