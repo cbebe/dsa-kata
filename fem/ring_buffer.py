@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod, abstractproperty
 from typing import Generic, TypeVar
 
-from . import expect, undefined
+from fem import expect
 
 T = TypeVar('T')
 
@@ -27,13 +27,13 @@ class RingBuffer(Generic[T], ABC):
 def test_ring_buffer(buffer: RingBuffer[int]):
     buffer.push(5)
     expect(buffer.pop()).toEqual(5)
-    expect(buffer.pop()).toEqual(undefined)
+    expect(buffer.pop()).toEqual(None)
 
     buffer.push(42)
     buffer.push(9)
     expect(buffer.pop()).toEqual(42)
     expect(buffer.pop()).toEqual(9)
-    expect(buffer.pop()).toEqual(undefined)
+    expect(buffer.pop()).toEqual(None)
 
     buffer.push(42)
     buffer.push(9)
