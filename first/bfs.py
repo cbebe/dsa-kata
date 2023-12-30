@@ -3,8 +3,7 @@ from first.queue import Queue
 
 
 def bfs(n: Node, val: int):
-    q = Queue[Node]()
-    q.enqueue(n)
+    q = Queue[Node](n)
     while (curr := q.dequeue()):
         if curr.val == val:
             return True
@@ -17,3 +16,4 @@ def bfs(n: Node, val: int):
 
 if __name__ == "__main__":
     test_tree_search(bfs)
+    print("OK")

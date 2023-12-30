@@ -13,10 +13,12 @@ class Node(Generic[T]):
 
 
 class Queue(FQueue[T]):
-    def __init__(self) -> None:
+    def __init__(self, *args: list[T]) -> None:
         self.head = None
         self.tail = None
         self._len = 0
+        for i in args:
+            self.enqueue(i)
 
     def enqueue(self, item: T):
         n = Node(item)
