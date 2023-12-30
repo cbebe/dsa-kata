@@ -70,4 +70,3 @@ def test_tree_search(search: Callable[[Node, int], bool]):
     expect(search(tree, 45)).toEqual(True)
     expect(search(tree, 7)).toEqual(True)
     expect(search(tree, 69)).toEqual(False)
-    print("OK")

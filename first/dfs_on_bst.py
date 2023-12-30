@@ -34,3 +34,4 @@ def dfs_on_bst(n: Node, val: int):
 if __name__ == "__main__":
     test_tree_search(dfs)
     test_tree_search(dfs_on_bst)
+    print("OK")

@@ -138,9 +138,7 @@ def test_reverse():
     b = DoublyLinkedList[int]()
     for i in range(5):
         b.prepend(i)
-    print(a)
     a.reverse()
-    print(a)
     for i in range(5):
         x = b.get(i)
         y = a.get(i)
