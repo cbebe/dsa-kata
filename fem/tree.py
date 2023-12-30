@@ -3,6 +3,19 @@ from typing import Callable
 from fem import expect
 
 
+def str_util(root, space):
+    # Base case
+    if (root is None):
+        return ""
+    space += 10
+    s = str_util(root.right, space)
+    s += "\n"
+    s += ((space - 10) * " ")
+    s += str(root.val)
+    s += str_util(root.left, space)
+    return s
+
+
 class Node:
     __slots__ = ('val', 'right', 'left')
 
@@ -10,6 +23,9 @@ class Node:
         self.val = item
         self.right = None
         self.left = None
+
+    def __str__(self):
+        return str_util(self, 0)
 
 
 def create_test_tree_1():
