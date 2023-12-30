@@ -54,6 +54,7 @@ T = TypeVar('T')
 GraphTraversal = Callable[[T, int, int], list[int] | None]
 
 
-def test_graph_traversal(gt: GraphTraversal, g: T):
+def test_graph_traversal(gt: GraphTraversal, g: T, directed=True):
     expect(gt(g, 0, 6)).toEqual([0, 1, 4, 5, 6])
-    expect(gt(g, 6, 0)).toEqual(None)
+    if directed:
+        expect(gt(g, 6, 0)).toEqual(None)
