@@ -63,7 +63,7 @@ class DoublyLinkedList(Generic[T], List[T]):
             if not curr or curr.val == item:
                 break
             curr = curr.next
-        return self.__pop_node(curr)
+        return self.pop_node(curr)
 
     def get(self, idx: int) -> T | None:
         n = self.__get_at(idx)
@@ -71,7 +71,7 @@ class DoublyLinkedList(Generic[T], List[T]):
 
     def remove_at(self, idx: int) -> T | None:
         curr = self.__get_at(idx)
-        return self.__pop_node(curr)
+        return self.pop_node(curr)
 
     @property
     def length(self) -> int:
@@ -85,7 +85,7 @@ class DoublyLinkedList(Generic[T], List[T]):
             curr = curr.next
         return curr
 
-    def __pop_node(self, curr: Node[T]) -> T | None:
+    def pop_node(self, curr: Node[T]) -> T | None:
         if not curr:
             return None
 
