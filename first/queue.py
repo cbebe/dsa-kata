@@ -13,7 +13,7 @@ class Node(Generic[T]):
 
 
 class Queue(FQueue[T]):
-    def __init__(self, *args: list[T]) -> None:
+    def __init__(self, *args: T) -> None:
         self.head = None
         self.tail = None
         self._len = 0
@@ -53,3 +53,4 @@ class Queue(FQueue[T]):
 if __name__ == "__main__":
     q = Queue[int]()
     test_queue(q)
+    print("OK")

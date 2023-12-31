@@ -43,3 +43,4 @@ class Stack(IStack[T]):
 if __name__ == "__main__":
     s = Stack[int]()
     test_stack(s)
+    print("OK")

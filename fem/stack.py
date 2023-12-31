@@ -48,4 +48,3 @@ def test_stack(s: Stack[int]):
     s.push(1)
     s.push(2)
     expect(s.peek()).toEqual(2)
-    print("OK")

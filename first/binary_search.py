@@ -19,3 +19,4 @@ def binary_fn(haystack: list[int], needle: int):
 
 if __name__ == "__main__":
     test_search(binary_fn)
+    print("OK")

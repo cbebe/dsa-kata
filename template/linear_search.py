@@ -7,3 +7,4 @@ def linear_fn(haystack: list[int], needle: int):
 
 if __name__ == "__main__":
     test_search(linear_fn)
+    print("OK")

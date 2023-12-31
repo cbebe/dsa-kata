@@ -18,4 +18,3 @@ def test_two_crystal_balls(tcb: Callable[[list[bool]], int | None]):
     last = [False] * size
     last[size - 1] = True
     expect(tcb(last)).toEqual(size - 1)
-    print("OK")

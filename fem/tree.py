@@ -21,8 +21,8 @@ class Node:
 
     def __init__(self, item):
         self.val = item
-        self.right = None
-        self.left = None
+        self.right: Node | None = None
+        self.left: Node | None = None
 
     def __str__(self):
         return str_util(self, 0)
@@ -59,10 +59,6 @@ def create_test_tree_2():
     root.left.left.right = Node(7)
 
     return root
-
-
-def dfs(n: Node, val: int):
-    return False
 
 
 def test_tree_search(search: Callable[[Node, int], bool]):

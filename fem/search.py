@@ -11,4 +11,3 @@ def test_search(search: Callable[[list[int], int], bool]):
     expect(search(foo, 69421)).toEqual(False)
     expect(search(foo, 1)).toEqual(True)
     expect(search(foo, 0)).toEqual(False)
-    print("OK")

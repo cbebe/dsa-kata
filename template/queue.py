@@ -24,3 +24,4 @@ class Queue(FQueue[T]):
 if __name__ == "__main__":
     q = Queue[int]()
     test_queue(q)
+    print("OK")

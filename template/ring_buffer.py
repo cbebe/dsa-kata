@@ -5,7 +5,8 @@ from fem.ring_buffer import test_ring_buffer
 
 T = TypeVar('T')
 
-class RingBuffer():
+
+class RingBuffer(IRingBuffer[T], Generic[T]):
     def push(self, item: T):
         pass
 
@@ -19,6 +20,8 @@ class RingBuffer():
     def length(self) -> int:
         return -1
 
+
 if __name__ == "__main__":
     rb = RingBuffer()
     test_ring_buffer(rb)
+    print("OK")

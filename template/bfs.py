@@ -7,3 +7,4 @@ def bfs(n: Node, val: int):
 
 if __name__ == "__main__":
     test_tree_search(bfs)
+    print("OK")

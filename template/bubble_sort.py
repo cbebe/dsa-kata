@@ -7,3 +7,4 @@ def bubble_sort(arr: list[int]):
 
 if __name__ == "__main__":
     test_sort(bubble_sort)
+    print("OK")

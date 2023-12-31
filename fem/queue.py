@@ -48,4 +48,3 @@ def test_queue(q: Queue[int]):
     q.enqueue(1)
     q.enqueue(2)
     expect(q.peek()).toEqual(1)
-    print("OK")
