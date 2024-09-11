@@ -18,3 +18,9 @@ def test_two_crystal_balls(tcb: Callable[[list[bool]], int | None]):
     last = [False] * size
     last[size - 1] = True
     expect(tcb(last)).toEqual(size - 1)
+
+    no_floors = []
+    expect(tcb(no_floors)).toEqual(None)
+
+    first = [True] * 100
+    expect(tcb(first)).toEqual(0)
